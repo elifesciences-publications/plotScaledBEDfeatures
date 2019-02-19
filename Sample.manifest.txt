@@ -1,0 +1,7 @@
+X	sample	group	include	dir	bamFile	frip
+1	PC.rep1	PC	TRUE	~/path2data/PC.rep1/	PC.rep1.sort.dupMark.bam	0.230385256
+2	PC.rep2	PC	TRUE	~/path2data/PC.rep2/	PC.rep2.sort.dupMark.bam	0.240901011
+3	PC.rep3	PC	FALSE	~/path2data/PC.rep3/	PC.rep3.sort.dupMark.bam	0.21465664
+4	nB.rep1	nB	TRUE	~/path2data/nB.rep1/	nB.rep1.sort.dupMark.bam	0.251343745
+5	nB.rep2	nB	TRUE	~/path2data/nB.rep2/	nB.rep2.sort.dupMark.bam	0.252222774
+6	nB.rep3	nB	FALSE	~/path2data/nB.rep3/	nB.rep3.sort.dupMark.bam	0.234535959
