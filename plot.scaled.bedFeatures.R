@@ -105,6 +105,9 @@ color.map.group = function(name) {if(grepl("nB", name)) nB.col else if (grepl("P
 	#set y-axis limits, this should be modified for each bed file right now
 	ylim = c(0,5)
 
+	#set group order
+	order = c("nB", "PC")   #customize the group order for plotting, can also be NA
+
 	#plot by boxplot	
-	plotBedBox(manifest = files, grpFile = grpFile, norm = norm, colFun = color.map.group, CalcStats = TRUE, ylim = ylim)
+	plotBedBox(manifest = files, grpFile = grpFile, norm = norm, colFun = color.map.group, CalcStats = TRUE, ylim = ylim, order=order)
 

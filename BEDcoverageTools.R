@@ -216,7 +216,7 @@ plotBedHist = function(manifest, sumFile = c(NA), lim = c(glim), norm = c(gNorm)
 
 		#find row means
 		ave = rowMeans(sum.subset)
-
+		
 		#add line to plot
 		lines(ave, col = group.col, lwd = lwd)
 		}
@@ -290,20 +290,26 @@ sumBamHistRow = function(bedName, manifest, range, lim = c(glim), outDir, sampFi
 }
 
 #Function to plot histogram from sumBamHistCol data
-plotBedBox = function(manifest, grpFile, norm = c(gNorm), colFun = c(NA), CalcStats = c(TRUE), ylim = c(NA), height = c(gheight), width = c(gwidth), mai = c(0.5, 0.4, 0.1, 0.1), mgp = c(1.2, 0.2, 0), tcl = c(gtcl), cex = c(gcex), cex.lab = c(gcex.lab), cex.axis = c(1), lwd = c(glwd), las = c(3), bty = c(gbty), ...) {
+plotBedBox = function(manifest, grpFile, norm = c(gNorm), colFun = c(NA), CalcStats = c(TRUE), ylim = c(NA), height = c(gheight), width = c(gwidth), mai = c(0.5, 0.4, 0.1, 0.1), mgp = c(1.2, 0.2, 0), tcl = c(gtcl), cex = c(gcex), cex.lab = c(gcex.lab), cex.axis = c(1), lwd = c(glwd), las = c(3), bty = c(gbty), order=c(NA), ...) {
 
-	#establish groups
-	grps = unique(manifest$group)
+	#establish group order for boxplot
+	if(!is.na(order[1])){
+		grps = order
+	} else {
+		grps = unique(manifest$group)
+	}
 
 	#establish color scheme
 	cols = unlist(lapply(grps, colFun))
 
+	#read in data
 	means = read.table(grpFile, sep = "\t", header = T)
 
 	#plot by boxplot	
 	cairo_pdf(gsub(".txt", ".boxPlot.pdf", grpFile), height = height, width = width)
 	par(mai = mai, mgp = mgp, tcl = tcl, bty = bty)
-	boxplot(means, notch = T, outline = F, col = cols, names = grps, las = las, ylim = ylim, ylab = norm)
+	if(!is.na(order[1])) means=means[,pmatch(order, colnames(means))]
+	boxplot(means, notch = T, outline = F, col = cols, names = grps, las = las, ylim = ylim, ylab = norm, cex = cex, cex.lab = cex.lab, cex.axis = cex.axis, lwd = lwd)
 	dev.off()
 
 	#calc stats
@@ -328,4 +334,3 @@ plotBedBox = function(manifest, grpFile, norm = c(gNorm), colFun = c(NA), CalcSt
 
 	}
 }
-
