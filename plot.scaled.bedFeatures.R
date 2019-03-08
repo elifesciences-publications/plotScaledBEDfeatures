@@ -18,7 +18,7 @@ bedFile = "IRF4.motifs.bed"
 #read in the sample manifest file
 manifestDir = "~/TF.footprinting/" #set directory if not current
 manifestFile = "Sample.manifest.txt"
-files = read.table(paste0(manfiestDir, manifestFile), header = T, sep = "\t", comment.char = "", quote = "");
+files = read.table(paste0(manifestDir, manifestFile), header = T, sep = "\t", comment.char = "", quote = "");
 
 #limit samples to use from manifest
 files = files[files$include, ]
